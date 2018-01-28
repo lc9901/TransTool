@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dropitems>
+  <item displayname ="auto" code ="auto"/>  
+  <item displayname ="中文" code ="zh"/>
+  <item displayname ="英文" code ="en"/>  
+  <item displayname ="粤语" code ="yue"/> 
+  <item displayname ="繁体中文" code ="cht"/>
+  <item displayname ="文言文" code ="wyw"/>  
+  <item displayname ="日语" code ="jp"/>  
+  <item displayname ="韩语" code ="kor"/>  
+  <item displayname ="法语" code ="fra"/>  
+  <item displayname ="西班牙语" code ="spa"/>  
+  <item displayname ="泰语" code ="th"/>  
+  <item displayname ="阿拉伯语" code ="ara"/>  
+  <item displayname ="俄语" code ="ru"/>  
+  <item displayname ="葡萄牙语" code ="pt"/>  
+  <item displayname ="德语" code ="de"/>  
+  <item displayname ="意大利语" code ="it"/>  
+  <item displayname ="希腊语" code ="el"/>
+  <item displayname ="荷兰语" code ="nl"/>
+  <item displayname ="波兰语" code ="pl"/>
+  <item displayname ="保加利亚语" code ="bul"/>
+  <item displayname ="爱沙尼亚语" code ="est"/>
+  <item displayname ="丹麦语" code ="dan"/>
+  <item displayname ="芬兰语" code ="fin"/>
+  <item displayname ="捷克语" code ="cs"/>
+  <item displayname ="罗马尼亚语" code ="rom"/>
+  <item displayname ="瑞典语" code ="swe"/>
+  <item displayname ="匈牙利语" code ="hu"/>
+  <item displayname ="越南语" code ="wie"/>
+</dropitems>
