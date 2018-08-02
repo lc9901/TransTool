@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using Trans.Business;
 using Trans.Entity;
@@ -33,6 +35,99 @@ namespace Trans
             this.InitContext();
             this.InitEvent();
         }
+
+        #endregion
+
+        #region Definitions
+        /// <summary>
+        /// 剪贴板内容改变时API函数向windows发送的消息
+        /// </summary>
+        const int WM_CLIPBOARDUPDATE = 0x031D;
+
+        /// <summary>
+        /// windows用于监视剪贴板的API函数
+        /// </summary>
+        /// <param name="hwnd">要监视剪贴板的窗口的句柄</param>
+        /// <returns>成功则返回true</returns>
+        [DllImport("user32.dll")]//引用dll,确保API可用
+        public static extern bool AddClipboardFormatListener(IntPtr hwnd);
+
+        /// <summary>
+        /// 取消对剪贴板的监视
+        /// </summary>
+        /// <param name="hwnd">监视剪贴板的窗口的句柄</param>
+        /// <returns>成功则返回true</returns>
+        [DllImport("user32.dll")]//引用dll,确保API可用
+        public static extern bool RemoveClipboardFormatListener(IntPtr hwnd);
+
+        #endregion
+
+        #region Clipboard API
+
+        /// <summary> WPF窗口重写 </summary>
+        protected override void OnSourceInitialized(EventArgs e)
+        {
+
+            base.OnSourceInitialized(e);
+
+            this.win_SourceInitialized(this, e);
+
+            // HTodo  ：添加剪贴板监视 
+            System.IntPtr handle = (new System.Windows.Interop.WindowInteropHelper(this)).Handle;
+
+            AddClipboardFormatListener(handle);
+
+        }
+
+
+        /// <summary> 添加监视消息 </summary>
+        void win_SourceInitialized(object sender, EventArgs e)
+        {
+
+            HwndSource hwndSource = PresentationSource.FromVisual(this) as HwndSource;
+
+            if (hwndSource != null)
+            {
+                hwndSource.AddHook(new HwndSourceHook(WndProc));
+            }
+
+        }
+
+        /// <summary> 剪贴板内容改变 </summary>
+        void OnClipboardChanged()
+        {
+            // HTodo  ：复制的文件路径 
+            string text = System.Windows.Clipboard.GetText();
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                this.txtBoxInput.Text = text;
+            }
+
+        }
+
+        #endregion
+
+        #region System Message
+
+        #region - 系统消息 -
+
+        protected virtual IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            switch (msg)
+            {
+                case WM_CLIPBOARDUPDATE:
+                    {
+                        OnClipboardChanged();
+                    }
+                    break;
+            }
+
+            return IntPtr.Zero;
+        }
+
+        #endregion
+
 
         #endregion
 
