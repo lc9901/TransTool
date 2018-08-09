@@ -99,7 +99,7 @@ namespace Trans
             // HTodo  ：复制的文件路径 
             string text = System.Windows.Clipboard.GetText();
 
-            if (!string.IsNullOrEmpty(text))
+            if (!string.IsNullOrEmpty(text) && !(text.Equals(this.txtBoxOutPut.Text)))
             {
                 this.txtBoxInput.Text = text;
             }
@@ -118,6 +118,7 @@ namespace Trans
             {
                 case WM_CLIPBOARDUPDATE:
                     {
+
                         OnClipboardChanged();
                     }
                     break;
