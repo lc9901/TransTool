@@ -12,7 +12,7 @@
             <ColumnDefinition Width="237*"/>
             <ColumnDefinition Width="132*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnTrans" Content="翻译" HorizontalAlignment="Left" Margin="43,8,0,0" VerticalAlignment="Top" Width="74" Grid.Column="2" Height="20"/>
+        <Button x:Name="btnTrans" Content="翻译" HorizontalAlignment="Left" Margin="43,9,0,0" VerticalAlignment="Top" Width="74" Grid.Column="2" Height="20"/>
         <ComboBox x:Name="comBoxInputType" HorizontalAlignment="Left" Margin="16,8,0,0" VerticalAlignment="Top" Width="74" Height="22" Grid.ColumnSpan="2"/>
         <ComboBox x:Name="comBoxOutPut" HorizontalAlignment="Left" Margin="124,8,0,0" VerticalAlignment="Top" Width="83" Grid.Column="1" Height="22"/>
         <Button x:Name="btnExchange" Content="交换" HorizontalAlignment="Left" Margin="78,10,0,0" VerticalAlignment="Top" Width="41" Height="18" Grid.Column="1"/>

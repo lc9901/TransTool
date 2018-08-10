@@ -110,8 +110,6 @@ namespace Trans
 
         #region System Message
 
-        #region - 系统消息 -
-
         protected virtual IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
             switch (msg)
@@ -126,9 +124,6 @@ namespace Trans
 
             return IntPtr.Zero;
         }
-
-        #endregion
-
 
         #endregion
 
@@ -188,8 +183,12 @@ namespace Trans
             this.back.RunWorkerCompleted += DoWorkComplete;
             this.btnCopy.Click += DoBtnCopyClick;
             this.KeyDown += DoWinKeyDown;
-            this.txtBoxInput.TextChanged += DoTextChanged; ;
+            this.txtBoxInput.TextChanged += DoTextChanged;
+            this.comBoxInputType.SelectionChanged += DoComboxSelectChanged;
+            this.comBoxOutPut.SelectionChanged += DoComboxSelectChanged;
         }
+
+
 
         #endregion
 
@@ -309,9 +308,24 @@ namespace Trans
                     i.IsSelected = true;
                 }
             }
-
+            if (!back.IsBusy)
+            {
+                TriggerActive();
+            }
         }
 
+        /// <summary>
+        /// Handle the select item change event.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DoComboxSelectChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!back.IsBusy)
+            {
+                TriggerActive();
+            }
+        }
         #endregion
 
         #region Trigger
