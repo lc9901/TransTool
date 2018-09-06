@@ -18,6 +18,10 @@ namespace Trans
     /// </summary>
     public partial class MainWindow : Window , IDisposable
     {
+        #region private field
+        IntPtr clipboardHandle = IntPtr.Zero;
+        #endregion
+
         #region privare method
         private XmlHelper xmlHelper = new XmlHelper();
         private TransController transController = new TransController();
@@ -73,9 +77,9 @@ namespace Trans
             this.win_SourceInitialized(this, e);
 
             // HTodo  ：添加剪贴板监视 
-            System.IntPtr handle = (new System.Windows.Interop.WindowInteropHelper(this)).Handle;
+            clipboardHandle = (new System.Windows.Interop.WindowInteropHelper(this)).Handle;
 
-            AddClipboardFormatListener(handle);
+            AddClipboardFormatListener(clipboardHandle);
 
         }
 
@@ -99,9 +103,9 @@ namespace Trans
             // HTodo  ：复制的文件路径 
             string text = System.Windows.Clipboard.GetText();
 
-            if (!string.IsNullOrEmpty(text) && !(text.Equals(this.txtBoxOutPut.Text)))
+            if (!IsActive && !string.IsNullOrEmpty(text) && !(text.Equals(txtBoxOutPut.Text)))
             {
-                this.txtBoxInput.Text = text;
+                txtBoxInput.Text = text;
             }
 
         }
@@ -369,6 +373,10 @@ namespace Trans
                 this.KeyDown -= DoWinKeyDown;
                 this.txtBoxInput.TextChanged -= DoTextChanged;
                 back.Dispose();
+                if(clipboardHandle != IntPtr.Zero)
+                {
+                    RemoveClipboardFormatListener(clipboardHandle);
+                }
             }
         }
 
