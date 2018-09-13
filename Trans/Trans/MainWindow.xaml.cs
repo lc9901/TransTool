@@ -190,9 +190,17 @@ namespace Trans
             this.txtBoxInput.TextChanged += DoTextChanged;
             this.comBoxInputType.SelectionChanged += DoComboxSelectChanged;
             this.comBoxOutPut.SelectionChanged += DoComboxSelectChanged;
+            this.KeyDown += DoMainWindowKeyDown;
         }
 
-
+        private void DoMainWindowKeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyboardDevice.IsKeyDown(Key.LeftAlt) && e.KeyboardDevice.IsKeyDown(Key.X))
+            {
+                // Alt + x 切换键
+                ExchangeInputOutType();
+            }
+        }
 
         #endregion
 
@@ -292,6 +300,11 @@ namespace Trans
         /// <param name="e"></param>
         private void DoBtnExchangeClick(object sender, RoutedEventArgs e)
         {
+            ExchangeInputOutType();
+        }
+
+        private void ExchangeInputOutType()
+        {
             string type1 = (((ComboBoxItem)comBoxInputType.SelectedItem).Tag as DropListItem).DisplayName;
             string type2 = (((ComboBoxItem)comBoxOutPut.SelectedItem).Tag as DropListItem).DisplayName;
 
@@ -372,6 +385,7 @@ namespace Trans
                 this.btnCopy.Click -= DoBtnCopyClick;
                 this.KeyDown -= DoWinKeyDown;
                 this.txtBoxInput.TextChanged -= DoTextChanged;
+                this.KeyDown -= DoMainWindowKeyDown;
                 back.Dispose();
                 if(clipboardHandle != IntPtr.Zero)
                 {
