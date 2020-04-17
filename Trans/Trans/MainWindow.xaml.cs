@@ -24,7 +24,7 @@ namespace Trans
 
         #region privare method
         private XmlHelper xmlHelper = new XmlHelper();
-        private TransController transController = new TransController();
+        private readonly TransController transController = new TransController();
         private BackgroundWorker back = new BackgroundWorker();
         #endregion
 

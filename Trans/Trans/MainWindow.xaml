@@ -5,21 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Trans"
         mc:Ignorable="d"
-        Title="Mytrans" Height="198.771" Width="396.209" MinWidth="396" MinHeight="190" MaxWidth="397" MaxHeight="191" Topmost="True">
-    <Grid Margin="0,0,2,0">
+        Title="Mytrans" Height="200" Width="400" MinWidth="400" MinHeight="200" MaxWidth="400" MaxHeight="500" Topmost="True">
+    <Grid Margin="0,0,4,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="17*"/>
-            <ColumnDefinition Width="237*"/>
-            <ColumnDefinition Width="132*"/>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnTrans" Content="翻译" HorizontalAlignment="Left" Margin="43,9,0,0" VerticalAlignment="Top" Width="74" Grid.Column="2" Height="20"/>
-        <ComboBox x:Name="comBoxInputType" HorizontalAlignment="Left" Margin="16,8,0,0" VerticalAlignment="Top" Width="74" Height="22" Grid.ColumnSpan="2"/>
-        <ComboBox x:Name="comBoxOutPut" HorizontalAlignment="Left" Margin="124,8,0,0" VerticalAlignment="Top" Width="83" Grid.Column="1" Height="22"/>
-        <Button x:Name="btnExchange" Content="交换" HorizontalAlignment="Left" Margin="78,10,0,0" VerticalAlignment="Top" Width="41" Height="18" Grid.Column="1"/>
-        <TextBox x:Name="txtBoxInput" HorizontalAlignment="Left" Height="96" Margin="14,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="156" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="txtBoxOutPut" HorizontalAlignment="Left" Height="96" Margin="171,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="181" IsReadOnly="True" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <Button x:Name="btnCopy" Grid.ColumnSpan="2" Content="Copy" Grid.Column="1" HorizontalAlignment="Left" Margin="213,9,0,0" VerticalAlignment="Top" Width="59" Height="20"/>
-        <Label Name="lblStatus" Grid.Column="1" HorizontalAlignment="Left" Height="11" Margin="0,143,0,0" VerticalAlignment="Top" Width="11"/>
-
+        <ComboBox Grid.Row="0" Grid.ColumnSpan="2" x:Name="comBoxInputType" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="74" Height="22"/>
+        <Button Grid.Row="0"  Grid.ColumnSpan="2" x:Name="btnExchange" Content="交换" HorizontalAlignment="Left" Margin="95,10,0,0" VerticalAlignment="Top" Width="41" Height="22"/>
+        <ComboBox Grid.Row="0"  Grid.ColumnSpan="2" x:Name="comBoxOutPut" HorizontalAlignment="Left" Margin="152,10,0,0" VerticalAlignment="Top" Width="83" Height="22"/>
+        <Button Grid.Row="0"  Grid.ColumnSpan="2"  x:Name="btnCopy" Content="Copy" HorizontalAlignment="Left" Margin="243,10,0,0" VerticalAlignment="Top" Width="59" Height="22"/>
+        <Button Grid.Row="0"  Grid.ColumnSpan="2" x:Name="btnTrans" Content="翻译" HorizontalAlignment="Left" Margin="306,9,0,0" VerticalAlignment="Top" Width="74" Height="22"/>
+        <TextBox Grid.Row="1" Grid.Column="0" x:Name="txtBoxInput" Margin="5" TextWrapping="Wrap" Text=""/>
+        <TextBox  Grid.Row="1" Grid.Column="1" x:Name="txtBoxOutPut" Margin="5" TextWrapping="Wrap" Text="" IsReadOnly="True"/>
+        <Label  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1"  Name="lblStatus" HorizontalAlignment="Left" Height="16" Margin="7,2,0,0" VerticalAlignment="Top" Width="26" Background="Gray"/>
     </Grid>
 </Window>
