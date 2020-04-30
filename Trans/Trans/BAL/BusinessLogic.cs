@@ -41,16 +41,7 @@ namespace Trans.BAL
             using (WebClient wc = new WebClient())
             {
 
-                string content = inputContent
-                                                //                             .Replace(@"%", "%25")  // 1. % 指定特殊字符 % 25
-                                                //                             .Replace(@"+", "%2B")  // 2. + URL 中+号表示空格 %2B
-                                                //                             .Replace(@" ", "%20")  // 3. 空格 URL中的空格可以用+号或者编码 %20 
-                                                //                             .Replace(@"/", "%2F")  // 4. / 分隔目录和子目录 %2F 
-                                                //                             .Replace(@"?", "%3F")  // 5. ? 分隔实际的 URL 和参数 %3F
-                                                //                             .Replace(@"#", "%23")  // 6. 表示书签 % 23
-                                                //                             .Replace(@"&", "%26")  // 7. & URL 中指定的参数间的分隔符 %26 
-                                                //                             .Replace(@"=", "%3D")  // 8. = URL 中指定参数的值 %3D
-                                                ;
+                String content = InputFilter(inputContent);
                 int salt = ranDom.Next();
 
                 // appid + q + salt + staticPassword.
@@ -102,6 +93,32 @@ namespace Trans.BAL
 
                 return targetLanguagereslut.ToString();
             }
+        }
+
+        private string InputFilter(string inputContent)
+        {
+            //                             .Replace(@"%", "%25")  // 1. % 指定特殊字符 % 25
+            //                             .Replace(@"+", "%2B")  // 2. + URL 中+号表示空格 %2B
+            //                             .Replace(@" ", "%20")  // 3. 空格 URL中的空格可以用+号或者编码 %20 
+            //                             .Replace(@"/", "%2F")  // 4. / 分隔目录和子目录 %2F 
+            //                             .Replace(@"?", "%3F")  // 5. ? 分隔实际的 URL 和参数 %3F
+            //                             .Replace(@"#", "%23")  // 6. 表示书签 % 23
+            //                             .Replace(@"&", "%26")  // 7. & URL 中指定的参数间的分隔符 %26 
+            //                             .Replace(@"=", "%3D")  // 8. = URL 中指定参数的值 %3D
+            var sb = new StringBuilder(inputContent);
+            sb
+                //.Replace(@"%", "%25")
+                .Replace(@"+", " ")
+                //.Replace(@" ", "%20")
+                //.Replace(@"/", "%2F")
+                //.Replace(@"?", "%3F")
+                .Replace(@"#", " ")
+                .Replace(@"$", " ")
+                .Replace(@"&", " ")
+                //.Replace(@"=", "%3D")
+                .Replace(@":", " ")
+                ;
+            return sb.ToString();
         }
     }
 }

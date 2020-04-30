@@ -111,7 +111,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Configuration\BaseConfiguration.xml" />
+    <Content Include="Configuration\BaseConfiguration.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Trans.ico" />
